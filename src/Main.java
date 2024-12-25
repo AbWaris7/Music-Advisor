@@ -4,6 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        String clientId = "5ba5f17270214e818b41c69c4df06258";
+        String redirectURL = "http://www.example.com?code=7angkqw2DAsdfkQ";
+        boolean isValid = false;
 
         // Start by reading the user input
         String choice;
@@ -12,28 +15,48 @@ public class Main {
         while (true) {
             // Get the user's input
             choice = input.nextLine().trim(); // Use nextLine() to capture the entire line, trimming leading and trailing spaces.
+            if (!isValid) {
+                if (choice.equals("auth")) {
+                    isValid = true;
+                    System.out.println("https://accounts.spotify.com/authorize?client_id=a19ee7dbfda443b2a8150c9101bfd645&redirect_uri=http://localhost:8080&response_type=code");
+                    System.out.println("---SUCCESS---");
 
-            // Use switch-case to handle the different commands
-            switch (choice) {
-                case "new":
-                    newReleased();
-                    break;
-                case "featured":
-                    featured();
-                    break;
-                case "categories":
-                    categories();
-                    break;
-                case "playlists Top Lists":
-                    playListsTopLists();  // Add this case to handle "playlists Top Lists"
-                    break;
-                case "exit":
+                } else if (choice.equals("exit")) {
                     System.out.println("---GOODBYE!---");
-                    return; // Exit the program
-                default:
-                    System.out.println("Invalid choice!"); // For invalid input
+                    break;
+                } else {
+                    System.out.println("Please, provide access for application.");
+                }
+            } else {
+
+                    // Use switch-case to handle the different commands
+                    switch (choice) {
+                        case "auth":
+                            auth();
+                        case "new":
+                            newReleased();
+                            break;
+                        case "featured":
+                            featured();
+                            break;
+                        case "categories":
+                            categories();
+                            break;
+                        case "playlists Top Lists":
+                            playListsTopLists();  // Add this case to handle "playlists Top Lists"
+                            break;
+                        case "exit":
+                            System.out.println("---GOODBYE!---");
+                            return; // Exit the program
+                        default:
+                            System.out.println("Invalid choice!"); // For invalid input
+                    }
             }
         }
+
+    }
+
+    private static void auth() {
     }
 
     // Simulate the response for new releases
